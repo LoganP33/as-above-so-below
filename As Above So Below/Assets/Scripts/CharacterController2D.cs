@@ -102,8 +102,8 @@ public class CharacterController2D : MonoBehaviour
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
-		m_FacingRight = !m_FacingRight;
+		//m_FacingRight = !m_FacingRight;
 
-		transform.Rotate(0f, 180f, 0f);
+		//transform.Rotate(0f, 180f, 0f);
 	}
 }

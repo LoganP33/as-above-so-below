@@ -21,9 +21,15 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>();
+        
         if (enemy != null)
         {
             enemy.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+
+        if(hitInfo.name == "Tilemap" || hitInfo.name == "Player")
+        {
             Destroy(gameObject);
         }
 
