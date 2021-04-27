@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public HealthBar HealthBar;
+
     public class PlayerStats
     {
-        public int Health = 100;
+        public int Health = 3;
     }
 
     //Instance of PlayerStats object
@@ -42,9 +44,10 @@ public class Player : MonoBehaviour
 
     public void damagePlayer(int damage)
     {
-        playerStats.Health -= damage;
+        playerStats.Health -= 1;
+        HealthBar.Update_Healthbar(playerStats.Health);
         //if health <= 0, kill player
-        if(playerStats.Health <= 0)
+        if (playerStats.Health <= 0)
         {
             GameMaster.KillPlayer(this);
         }
