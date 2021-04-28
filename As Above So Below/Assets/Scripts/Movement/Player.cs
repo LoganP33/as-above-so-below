@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D col)
     {
         //If the player collides with an Enemy, take damage
-        if(col.gameObject.name == "Enemy(Clone)" && playerStats.Health > 0)
+        if(col.gameObject.tag == "Enemy" && playerStats.Health > 0)
         {
             damagePlayer(10);
             Debug.Log(playerStats.Health);

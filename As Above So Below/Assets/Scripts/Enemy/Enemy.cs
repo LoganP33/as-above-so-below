@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
 	public GameObject Player;
 
 	private float moveSpeed = 3f;
+	private float distanceToPlayer;
 
     public void Start()
     {
@@ -21,17 +22,11 @@ public class Enemy : MonoBehaviour
 
     public void Update()
     {
-		if(!(Math.Abs(Player.transform.position.x - this.transform.position.x) < 2))
+		distanceToPlayer = Vector3.Distance(this.transform.position, Player.transform.position);
+		if(distanceToPlayer <= 7)
         {
-			if (Player.transform.position.x < this.transform.position.x)
-			{
-				this.transform.position += new Vector3(-moveSpeed * Time.deltaTime, 0f, 0f);
-			}
-			else if (Player.transform.position.x >= this.transform.position.x)
-			{
-				this.transform.position += new Vector3(moveSpeed * Time.deltaTime, 0f, 0f);
-			}
-		}
+			MoveToPlayer();
+        }
     }
 
     public void TakeDamage(int damage)
@@ -44,10 +39,20 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-
 	void Die()
 	{
 		Destroy(gameObject);
 	}
 
+	void MoveToPlayer()
+    {
+		if (Player.transform.position.x < this.transform.position.x)
+		{
+			this.transform.position += new Vector3(-moveSpeed * Time.deltaTime, 0f, 0f);
+		}
+		else if (Player.transform.position.x >= this.transform.position.x)
+		{
+			this.transform.position += new Vector3(moveSpeed * Time.deltaTime, 0f, 0f);
+		}
+	}
 }
