@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
@@ -77,7 +78,7 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
 
 			// If the input is moving the player right and the player is facing left...
-			if (move > 0 && !m_FacingRight)
+			/*if (move > 0 && !m_FacingRight)
 			{
 				// ... flip the player.
 				Flip();
@@ -87,7 +88,7 @@ public class CharacterController2D : MonoBehaviour
 			{
 				// ... flip the player.
 				Flip();
-			}
+			}*/
 		}
 		// If the player should jump...
 		if (m_Grounded && jump)
@@ -99,11 +100,18 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	private void Flip()
+	/*private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
-		//m_FacingRight = !m_FacingRight;
-
-		//transform.Rotate(0f, 180f, 0f);
+		m_FacingRight = !m_FacingRight;
+		transform.Rotate(0f, 180f, 0f);
 	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+    {
+		if(collision.tag == "Poweruo")
+        {
+			Debug.Log("WE GOT ONE");
+        }
+    }*/
 }

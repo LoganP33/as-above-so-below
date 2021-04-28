@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ArmPivot : MonoBehaviour
 {
-
     public GameObject Player;
 
     private void Update()
@@ -20,6 +19,7 @@ public class ArmPivot : MonoBehaviour
         //if arm is on left side of graph
         if(rotation_z < -90 || rotation_z > 90)
         {
+            Debug.Log(Player.transform.eulerAngles.y);
             //if player is facing right
             if(Player.transform.eulerAngles.y == 0)
             {
@@ -27,9 +27,9 @@ public class ArmPivot : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(180, 0, -rotation_z);
             }
 
-            else if(Player.transform.eulerAngles.y == -180)
+            else if(Player.transform.eulerAngles.y == 180)
             {
-                transform.localRotation = Quaternion.Euler(180, -180, -rotation_z);
+                transform.localRotation = Quaternion.Euler(180, 180, -rotation_z);
             }
         }
     }
