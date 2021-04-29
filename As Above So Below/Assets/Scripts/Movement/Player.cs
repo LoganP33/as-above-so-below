@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         //If the player collides with an Enemy, take damage
 		Debug.Log(col.gameObject.name);
 		Debug.Log(playerStats.Health);
-        if(col.gameObject.name == "Enemy(Clone)" && playerStats.Health > 0)
+        if(col.gameObject.tag == "Enemy" && playerStats.Health > 0)
         {
             damagePlayer();
             Debug.Log(playerStats.Health);
