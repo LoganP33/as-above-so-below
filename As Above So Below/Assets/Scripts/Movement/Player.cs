@@ -57,16 +57,17 @@ public class Player : MonoBehaviour
             Debug.Log(playerStats.Health);
             StartCoroutine("Invulnerability_Frames");
         }
-        
-
+    }
+	
+	void OnTriggerEnter2D(Collider2D col)
+    {
         if(col.gameObject.name == "Checkpoint1" && crossed_checkpoint1 == false)
-        {
-            crossed_checkpoint1 = true;
+		{
+			crossed_checkpoint1 = true;
             Weapon.current_upgrade_lvl = 1;
             Weapon.update_upgrades(Weapon.current_upgrade_lvl);
-        }
-
-        else if (col.gameObject.name == "Checkpoint2" && crossed_checkpoint2 == false)
+		}
+		else if (col.gameObject.name == "Checkpoint2" && crossed_checkpoint2 == false)
         {
             crossed_checkpoint2 = true;
             Weapon.current_upgrade_lvl = 2;
@@ -86,7 +87,6 @@ public class Player : MonoBehaviour
             Weapon.current_upgrade_lvl = 4;
             Weapon.update_upgrades(Weapon.current_upgrade_lvl);
         }
-
     }
 
     public void damagePlayer()
