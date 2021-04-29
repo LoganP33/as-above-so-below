@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (transform.position.y <= -20)
-            damagePlayer(10);
+            damagePlayer();
     }
 
     public void setAlpha(float alpha)
@@ -49,13 +49,15 @@ public class Player : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D col)
     {
         //If the player collides with an Enemy, take damage
+		Debug.Log(col.gameObject.name);
+		Debug.Log(playerStats.Health);
         if(col.gameObject.name == "Enemy(Clone)" && playerStats.Health > 0)
         {
-            damagePlayer(10);
+            damagePlayer();
             Debug.Log(playerStats.Health);
             StartCoroutine("Invulnerability_Frames");
         }
-        Debug.Log(col.gameObject.name);
+        
 
         if(col.gameObject.name == "Checkpoint1" && crossed_checkpoint1 == false)
         {
@@ -87,14 +89,16 @@ public class Player : MonoBehaviour
 
     }
 
-    public void damagePlayer(int damage)
+    public void damagePlayer()
     {
         playerStats.Health -= 1;
         HealthBar.Update_Healthbar(playerStats.Health);
         //if health <= 0, kill player
         if (playerStats.Health <= 0)
         {
+			PlayerPos.known = 1;
             GameMaster.KillPlayer(this);
+			playerStats.Health = 3;
         }
     }
 

@@ -19,7 +19,7 @@ public class ArmPivot : MonoBehaviour
         //if arm is on left side of graph
         if(rotation_z < -90 || rotation_z > 90)
         {
-            Debug.Log(Player.transform.eulerAngles.y);
+            
             //if player is facing right
             if(Player.transform.eulerAngles.y == 0)
             {
