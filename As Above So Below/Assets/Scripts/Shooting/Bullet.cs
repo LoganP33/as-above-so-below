@@ -21,6 +21,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>();
+        Debug.Log(hitInfo.name);
         
         if (enemy != null)
         {
@@ -29,7 +30,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(hitInfo.name == "Tilemap" || hitInfo.name == "Player" || hitInfo.name == "Default")
+        if(hitInfo.name == "Layer1" || hitInfo.name == "Player" || hitInfo.name == "Default")
         {
             Destroy(gameObject);
         }
