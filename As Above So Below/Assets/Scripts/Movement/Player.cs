@@ -94,6 +94,7 @@ public class Player : MonoBehaviour
         //if health <= 0, kill player
         if (playerStats.Health <= 0)
         {
+            GameOverMenu.GameOver();
             GameMaster.KillPlayer(this);
         }
     }
