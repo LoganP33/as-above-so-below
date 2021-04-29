@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
         if(Time.time > nextSpawn && enemies.Length < 5)
         {
             nextSpawn = Time.time + spawnRate;
-            Vector2 v2Pos = Camera.main.ViewportToWorldPoint(new Vector2(1.5f, 1.1f));
+            Vector2 v2Pos = UnityEngine.Camera.main.ViewportToWorldPoint(new Vector2(1.5f, 1.1f));
             Instantiate(enemy, v2Pos, Quaternion.identity);
         }
     }

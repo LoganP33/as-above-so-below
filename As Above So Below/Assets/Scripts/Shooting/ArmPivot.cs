@@ -9,7 +9,7 @@ public class ArmPivot : MonoBehaviour
     private void Update()
     {
         //Converting screeen position of mouse to world position of mouse
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 difference = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         difference.Normalize();
 
         float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
