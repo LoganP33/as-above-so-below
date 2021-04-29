@@ -55,7 +55,6 @@ public class Player : MonoBehaviour
             Debug.Log(playerStats.Health);
             StartCoroutine("Invulnerability_Frames");
         }
-        Debug.Log(col.gameObject.name);
 
         if(col.gameObject.name == "Checkpoint1" && crossed_checkpoint1 == false)
         {
@@ -87,8 +86,8 @@ public class Player : MonoBehaviour
 
     }
 
-    public void damagePlayer(int damage)
-    {
+    public void damagePlayer(int damage) {
+    
         playerStats.Health -= 1;
         HealthBar.Update_Healthbar(playerStats.Health);
         //if health <= 0, kill player
@@ -111,4 +110,5 @@ public class Player : MonoBehaviour
         rend.material.color = c;
         setAlpha(1f);
     }
+
 }

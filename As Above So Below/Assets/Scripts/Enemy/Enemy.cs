@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
 
 	private float moveSpeed = 3f;
 	private float distanceToPlayer;
+	public bool stop = false;
 
     public void Start()
     {
@@ -23,7 +24,7 @@ public class Enemy : MonoBehaviour
     public void Update()
     {
 		distanceToPlayer = Vector3.Distance(this.transform.position, Player.transform.position);
-		if(distanceToPlayer <= 7)
+		if(distanceToPlayer <= 7 && !stop)
         {
 			MoveToPlayer();
         }
@@ -48,11 +49,20 @@ public class Enemy : MonoBehaviour
     {
 		if (Player.transform.position.x < this.transform.position.x)
 		{
+			if (!this.gameObject.GetComponent<SpriteRenderer>().flipX)
+            {
+				this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+			}
 			this.transform.position += new Vector3(-moveSpeed * Time.deltaTime, 0f, 0f);
 		}
 		else if (Player.transform.position.x >= this.transform.position.x)
 		{
+			if (this.gameObject.GetComponent<SpriteRenderer>().flipX)
+			{
+				this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+			}
 			this.transform.position += new Vector3(moveSpeed * Time.deltaTime, 0f, 0f);
 		}
 	}
+
 }
