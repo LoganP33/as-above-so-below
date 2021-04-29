@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
-    public void MenuVisibility() {
-        gameObject.SetActive(true);
+    public static GameObject screen;
+
+    public static void GameOver() {
+        screen = GameObject.FindWithTag("Background");
+        screen.SetActive(true);
     }
 
     public void Restart() {
