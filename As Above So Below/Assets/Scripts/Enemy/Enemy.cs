@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
 	public GameObject Player;
 
 	private float moveSpeed = 3f;
+	private float distanceToPlayer;
+	public bool stop = false;
 
     public void Start()
     {
@@ -21,17 +23,11 @@ public class Enemy : MonoBehaviour
 
     public void Update()
     {
-		if(!(Math.Abs(Player.transform.position.x - this.transform.position.x) < 2))
+		distanceToPlayer = Vector3.Distance(this.transform.position, Player.transform.position);
+		if(distanceToPlayer <= 7 && !stop)
         {
-			if (Player.transform.position.x < this.transform.position.x)
-			{
-				this.transform.position += new Vector3(-moveSpeed * Time.deltaTime, 0f, 0f);
-			}
-			else if (Player.transform.position.x >= this.transform.position.x)
-			{
-				this.transform.position += new Vector3(moveSpeed * Time.deltaTime, 0f, 0f);
-			}
-		}
+			MoveToPlayer();
+        }
     }
 
     public void TakeDamage(int damage)
@@ -44,10 +40,29 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-
 	void Die()
 	{
 		Destroy(gameObject);
+	}
+
+	void MoveToPlayer()
+    {
+		if (Player.transform.position.x < this.transform.position.x)
+		{
+			if (!this.gameObject.GetComponent<SpriteRenderer>().flipX)
+            {
+				this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+			}
+			this.transform.position += new Vector3(-moveSpeed * Time.deltaTime, 0f, 0f);
+		}
+		else if (Player.transform.position.x >= this.transform.position.x)
+		{
+			if (this.gameObject.GetComponent<SpriteRenderer>().flipX)
+			{
+				this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+			}
+			this.transform.position += new Vector3(moveSpeed * Time.deltaTime, 0f, 0f);
+		}
 	}
 
 }
