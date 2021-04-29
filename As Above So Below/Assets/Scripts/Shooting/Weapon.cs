@@ -11,6 +11,7 @@ public struct Upgrade_Type
 	public GameObject wpn_sprite;
 	public Transform firePoint;
 	public float timeToFire;
+	public AudioSource gun_sound;
 }
 
 public class Weapon : MonoBehaviour
@@ -27,6 +28,7 @@ public class Weapon : MonoBehaviour
 	public LayerMask whatToHit;
 	//How fast that the weapon fires the fireRate
 	public float timeToFire = 0;
+	public AudioSource gun_sound;
 	public static int damage;
 
 
@@ -45,6 +47,7 @@ public class Weapon : MonoBehaviour
 		firePoint = Upgrades[0].firePoint;
 		timeToFire = Upgrades[0].timeToFire;
 		fireRate = Upgrades[0].fireRate;
+		gun_sound = Upgrades[0].gun_sound;
 
 		update_upgrades(current_upgrade_lvl);
 	}
@@ -79,6 +82,7 @@ public class Weapon : MonoBehaviour
 			damage = Upgrades[current_upgrade_lvl].damage;
 			firePoint = Upgrades[current_upgrade_lvl].firePoint;
 			timeToFire = Upgrades[current_upgrade_lvl].timeToFire;
+			gun_sound = Upgrades[current_upgrade_lvl].gun_sound;
 			Upgrades[current_upgrade_lvl].wpn_sprite.SetActive(true);
 			Upgrades[current_upgrade_lvl - 1].wpn_sprite.SetActive(false);
 		}		
@@ -88,5 +92,7 @@ public class Weapon : MonoBehaviour
 	void Shoot()
 	{
 		Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+		Debug.Log(gun_sound);
+		gun_sound.Play();
 	}
 }
