@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (transform.position.y <= -20)
-            damagePlayer(10);
+            damagePlayer();
     }
 
     public void setAlpha(float alpha)
@@ -49,21 +49,25 @@ public class Player : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D col)
     {
         //If the player collides with an Enemy, take damage
-        if(col.gameObject.tag == "Enemy" && playerStats.Health > 0)
+		Debug.Log(col.gameObject.name);
+		Debug.Log(playerStats.Health);
+        if(col.gameObject.name == "Enemy(Clone)" && playerStats.Health > 0)
         {
-            damagePlayer(10);
+            damagePlayer();
             Debug.Log(playerStats.Health);
             StartCoroutine("Invulnerability_Frames");
         }
-
+    }
+	
+	void OnTriggerEnter2D(Collider2D col)
+    {
         if(col.gameObject.name == "Checkpoint1" && crossed_checkpoint1 == false)
-        {
-            crossed_checkpoint1 = true;
+		{
+			crossed_checkpoint1 = true;
             Weapon.current_upgrade_lvl = 1;
             Weapon.update_upgrades(Weapon.current_upgrade_lvl);
-        }
-
-        else if (col.gameObject.name == "Checkpoint2" && crossed_checkpoint2 == false)
+		}
+		else if (col.gameObject.name == "Checkpoint2" && crossed_checkpoint2 == false)
         {
             crossed_checkpoint2 = true;
             Weapon.current_upgrade_lvl = 2;
@@ -83,18 +87,17 @@ public class Player : MonoBehaviour
             Weapon.current_upgrade_lvl = 4;
             Weapon.update_upgrades(Weapon.current_upgrade_lvl);
         }
-
     }
 
-    public void damagePlayer(int damage) {
-    
+    public void damagePlayer()
+    {
         playerStats.Health -= 1;
         HealthBar.Update_Healthbar(playerStats.Health);
         //if health <= 0, kill player
         if (playerStats.Health <= 0)
         {
-            GameOverMenu.GameOver();
-            GameMaster.KillPlayer(this);
+			PlayerPos.known = 1;
+			playerStats.Health = 3;
         }
     }
 
@@ -110,5 +113,4 @@ public class Player : MonoBehaviour
         rend.material.color = c;
         setAlpha(1f);
     }
-
 }

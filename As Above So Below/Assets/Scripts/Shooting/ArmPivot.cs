@@ -9,7 +9,7 @@ public class ArmPivot : MonoBehaviour
     private void Update()
     {
         //Converting screeen position of mouse to world position of mouse
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 difference = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         difference.Normalize();
 
         float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
@@ -19,7 +19,7 @@ public class ArmPivot : MonoBehaviour
         //if arm is on left side of graph
         if(rotation_z < -90 || rotation_z > 90)
         {
-            Debug.Log(Player.transform.eulerAngles.y);
+            
             //if player is facing right
             if(Player.transform.eulerAngles.y == 0)
             {
