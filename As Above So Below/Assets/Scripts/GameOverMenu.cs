@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
+    public void MenuVisibility() {
+        gameObject.SetActive(true);
+    }
+
     public void Restart() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
