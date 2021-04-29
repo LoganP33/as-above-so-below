@@ -97,7 +97,6 @@ public class Player : MonoBehaviour
         if (playerStats.Health <= 0)
         {
 			PlayerPos.known = 1;
-            GameMaster.KillPlayer(this);
 			playerStats.Health = 3;
         }
     }

@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(hitInfo.name == "Tilemap" || hitInfo.name == "Player")
+        if(hitInfo.name == "Tilemap" || hitInfo.name == "Player" || hitInfo.name == "Default")
         {
             Destroy(gameObject);
         }
