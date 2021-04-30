@@ -8,7 +8,7 @@ public class GameOverMenu : MonoBehaviour
     public static GameObject screen;
 
     public static void GameOver() {
-        screen = GameObject.FindWithTag("Background");
+        screen = GameObject.FindWithTag("Gameover_Screen");
         screen.SetActive(true);
     }
 
