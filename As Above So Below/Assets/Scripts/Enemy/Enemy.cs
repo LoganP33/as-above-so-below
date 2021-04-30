@@ -8,16 +8,13 @@ public class Enemy : MonoBehaviour
 
 	public int health = 100;
 
-	public GameObject deathEffect;
-	public GameObject Player;
-
-	private float moveSpeed = 3f;
+	private float moveSpeed = 3;
 	private float distanceToPlayer;
 	public bool stop = false;
+	public GameObject Player;
 
     public void Start()
     {
-		deathEffect = GameObject.Find("enemy-death-4");
 		Player = GameObject.FindGameObjectWithTag("Player");
 	}
 

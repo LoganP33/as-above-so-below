@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private bool crossed_checkpoint2 = false;
     private bool crossed_checkpoint3 = false;
     private bool crossed_checkpoint4 = false;
+    private bool can_be_hit;
 
     public class PlayerStats
     {
@@ -26,6 +27,8 @@ public class Player : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         c = rend.material.color;
+        playerStats.Health = 3;
+        can_be_hit = true;
     }
 
     void Update()
@@ -49,13 +52,15 @@ public class Player : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D col)
     {
         //If the player collides with an Enemy, take damage
-		Debug.Log(col.gameObject.name);
-		Debug.Log(playerStats.Health);
-        if(col.gameObject.tag == "Enemy" && playerStats.Health > 0)
+        if (col.gameObject.tag == "Enemy" && playerStats.Health > 1 && can_be_hit == true)
+        {
+           can_be_hit = false;
+           damagePlayer();
+           StartCoroutine("Invulnerability_Frames");
+        }
+        else if(col.gameObject.tag == "Enemy" && playerStats.Health == 1 && can_be_hit == true)
         {
             damagePlayer();
-            Debug.Log(playerStats.Health);
-            StartCoroutine("Invulnerability_Frames");
         }
     }
 	
@@ -112,5 +117,6 @@ public class Player : MonoBehaviour
         c.a = 1f;
         rend.material.color = c;
         setAlpha(1f);
+        can_be_hit = true;
     }
 }
