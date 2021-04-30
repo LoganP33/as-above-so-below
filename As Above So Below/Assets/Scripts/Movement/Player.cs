@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Player : MonoBehaviour
     private bool crossed_checkpoint3 = false;
     private bool crossed_checkpoint4 = false;
     private bool can_be_hit;
+    public GameObject screen;
+    public TMPro.TextMeshProUGUI screen_text;
 
     public class PlayerStats
     {
@@ -34,7 +37,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (transform.position.y <= -20)
-            damagePlayer();
+        {
+            playerStats.Health = 0;
+            HealthBar.Update_Healthbar(playerStats.Health);
+            screen.SetActive(true);
+        }
     }
 
     public void setAlpha(float alpha)
@@ -61,6 +68,7 @@ public class Player : MonoBehaviour
         else if(col.gameObject.tag == "Enemy" && playerStats.Health == 1 && can_be_hit == true)
         {
             damagePlayer();
+            screen.SetActive(true);
         }
     }
 	
@@ -88,9 +96,8 @@ public class Player : MonoBehaviour
 
         else if (col.gameObject.name == "Checkpoint4" && crossed_checkpoint4 == false)
         {
-            crossed_checkpoint4 = true;
-            Weapon.current_upgrade_lvl = 4;
-            Weapon.update_upgrades(Weapon.current_upgrade_lvl);
+            screen_text.text = "YOU WIN!";
+            screen.SetActive(true);
         }
     }
 

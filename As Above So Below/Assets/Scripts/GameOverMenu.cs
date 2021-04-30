@@ -5,14 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
-    public static GameObject screen;
-
-    public static void GameOver() {
-        screen = GameObject.Find("GameOver_Screen");
-        Debug.Log("butt");
-        screen.SetActive(true);
-    }
-
     public void Restart() {
         SceneManager.LoadScene("Main Level");
     }
