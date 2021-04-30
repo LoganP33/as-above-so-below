@@ -18,6 +18,7 @@ public class PlayerPos : MonoBehaviour
 	{
 		if (HealthBar.heal == 0)
 		{
+			GameOverMenu.GameOver();
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 			HealthBar.heal = 3;
 			

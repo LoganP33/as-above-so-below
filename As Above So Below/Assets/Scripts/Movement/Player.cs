@@ -98,12 +98,6 @@ public class Player : MonoBehaviour
     {
         playerStats.Health -= 1;
         HealthBar.Update_Healthbar(playerStats.Health);
-        //if health <= 0, kill player
-        if (playerStats.Health <= 0)
-        {
-			PlayerPos.known = 1;
-			playerStats.Health = 3;
-        }
     }
 
     IEnumerator Invulnerability_Frames()

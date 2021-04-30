@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthBar : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] Health = new GameObject[3];
 	public static int heal = 3;
-	
+    public GameOverMenu GameOverMenu;
+
 
     public void Update_Healthbar(int current_health)
     {
@@ -27,6 +29,9 @@ public class HealthBar : MonoBehaviour
         {
             Health[0].SetActive(false);
 			heal = 0;
+            GameOverMenu.GameOver();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            HealthBar.heal = 3;
         }
     }
 

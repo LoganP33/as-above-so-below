@@ -8,7 +8,8 @@ public class GameOverMenu : MonoBehaviour
     public static GameObject screen;
 
     public static void GameOver() {
-        screen = GameObject.FindWithTag("Gameover_Screen");
+        screen = GameObject.Find("GameOver_Screen");
+        Debug.Log("butt");
         screen.SetActive(true);
     }
 
